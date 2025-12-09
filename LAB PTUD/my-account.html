@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Account — Pawfoy</title>
+
+  <!-- Google Font (mặc định) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Header (giữ tối giản giống trang chủ, icon user dẫn tới my-account) -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="logo-square">🐾</div>
+          <div class="brand-text">Pawfoy</div>
+        </div>
+
+        <nav class="topnav">
+          <a href="#">Trang chủ</a>
+          <a href="#">Dịch vụ</a>
+          <a href="#">Blog</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="btn-outline" id="btn-book">Đặt lịch ngay</button>
+          <button class="icon-btn" title="My account" aria-label="My account" onclick="location.href='my-account.html'">
+            <span class="user-circle">A</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <aside class="sidebar" aria-label="Menu tài khoản">
+        <div class="account-title">
+          <div class="avatar-small">A</div>
+          <div class="account-name">TRẦN THỊ MINH ANH</div>
+        </div>
+
+        <ul class="menu">
+          <li class="menu-item active" data-tab="profile"><span class="icon">👤</span> Hồ sơ</li>
+          <li class="menu-item" data-tab="appointments"><span class="icon">📅</span> Lịch đặt</li>
+          <li class="menu-item" data-tab="settings"><span class="icon">⚙️</span> Cài đặt</li>
+          <li class="menu-item logout" data-tab="logout"><span class="icon">⎋</span> Đăng xuất</li>
+        </ul>
+      </aside>
+
+      <section class="account-panel">
+        <!-- Page heading -->
+        <h1 class="page-title">Hồ sơ</h1>
+
+        <!-- Profile tab -->
+        <div class="tab-content" id="profile" role="region">
+          <div class="profile-grid">
+
+            <div class="card profile-card">
+              <div class="avatar-large">A</div>
+              <button class="edit-link" id="openEdit">Chỉnh sửa</button>
+
+              <div class="info-row">
+                <div class="label">Họ</div>
+                <div class="value" id="lastName"><!-- placeholder --></div>
+              </div>
+
+              <div class="info-row">
+                <div class="label">Tên</div>
+                <div class="value" id="firstName"></div>
+              </div>
+
+              <div class="info-row">
+                <div class="label">Số điện thoại</div>
+                <div class="value" id="phone"></div>
+              </div>
+
+              <div class="info-row">
+                <div class="label">Email</div>
+                <div class="value" id="email"></div>
+              </div>
+
+              <div class="info-row">
+                <div class="label">Ngày sinh</div>
+                <div class="value" id="birthday"></div>
+              </div>
+
+              <div class="info-row">
+                <div class="label">Địa chỉ</div>
+                <div class="value" id="address"></div>
+              </div>
+            </div>
+
+            <div class="card address-card">
+              <h3>Địa chỉ của tôi</h3>
+              <div class="address-list">
+                <div class="address-item">
+                  <div class="addr-title">Trang chủ</div>
+                  <div class="addr-sub">Thêm địa chỉ nhà</div>
+                </div>
+
+                <div class="address-item">
+                  <div class="addr-title">Cơ quan</div>
+                  <div class="addr-sub">Thêm địa chỉ cơ quan</div>
+                </div>
+
+                <button class="btn-add">+ Thêm</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Appointments tab -->
+        <div class="tab-content" id="appointments" role="region" hidden>
+          <h2>Lịch đặt của tôi</h2>
+
+          <div id="appointmentsList" class="appointments-list">
+            <!-- Since user not logged in → placeholder shows no bookings -->
+            <div class="empty-state">
+              <p class="big">Không có lịch đặt</p>
+              <p>Bạn chưa đặt lịch nào. Hãy tìm dịch vụ và đặt lịch ngay!</p>
+              <button class="btn-primary" id="goToHome">Tìm dịch vụ</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings tab -->
+        <div class="tab-content" id="settings" role="region" hidden>
+          <h2>Cài đặt</h2>
+
+          <div class="settings-card card">
+            <h3>Thay đổi mật khẩu</h3>
+            <p>Nếu muốn thay đổi mật khẩu, bấm vào nút bên dưới.</p>
+            <button class="btn-outline" id="changePassword">Thay đổi mật khẩu</button>
+          </div>
+
+          <div class="settings-card card">
+            <h3>Thông báo của tôi</h3>
+            <div class="setting-row">
+              <div>
+                <div class="setting-title">Email</div>
+                <div class="setting-sub">Nhận email thông báo</div>
+              </div>
+              <div>
+                <label class="switch">
+                  <input type="checkbox" id="notifEmail">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div>
+                <div class="setting-title">Tin nhắn SMS</div>
+                <div class="setting-sub">Nhận thông báo qua SMS</div>
+              </div>
+              <div>
+                <label class="switch">
+                  <input type="checkbox" id="notifSms">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div>
+                <div class="setting-title">WhatsApp</div>
+                <div class="setting-sub">Nhận thông báo qua WhatsApp</div>
+              </div>
+              <div>
+                <label class="switch">
+                  <input type="checkbox" id="notifWa">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-card card danger">
+            <h3>Xóa tài khoản</h3>
+            <p>Hành động này sẽ xóa toàn bộ dữ liệu cá nhân. Vui lòng cân nhắc kỹ.</p>
+            <button class="btn-danger" id="btnDelete">Xóa tài khoản</button>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">© 2025 Pawfoy — Nền tảng đặt lịch Spa & Thú y</div>
+    </footer>
+  </div>
+
+  <!-- Edit profile modal -->
+  <div class="modal" id="editModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Chỉnh sửa hồ sơ</h3>
+      <form id="editForm">
+        <div class="form-row">
+          <label for="inputLast">Họ</label>
+          <input id="inputLast" name="lastName" placeholder="Nguyễn" />
+        </div>
+        <div class="form-row">
+          <label for="inputFirst">Tên</label>
+          <input id="inputFirst" name="firstName" placeholder="Văn A" />
+        </div>
+
+        <div class="form-row">
+          <label for="inputPhone">Số điện thoại</label>
+          <input id="inputPhone" name="phone" placeholder="+84 9xx xxx xxx" />
+        </div>
+
+        <div class="form-row">
+          <label for="inputEmail">Email</label>
+          <input id="inputEmail" name="email" placeholder="email@domain.com" />
+        </div>
+
+        <div class="form-row">
+          <label for="inputBirthday">Ngày sinh</label>
+          <input id="inputBirthday" name="birthday" placeholder="YYYY-MM-DD" />
+        </div>
+
+        <div class="form-row">
+          <label for="inputAddress">Địa chỉ</label>
+          <input id="inputAddress" name="address" placeholder="Số nhà, đường, quận..." />
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-outline" id="cancelEdit">Hủy</button>
+          <button type="submit" class="btn-primary">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/app.js"></script>
+</body>
+</html>
